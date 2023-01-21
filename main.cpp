@@ -62,7 +62,7 @@ void PC() {
     }
 
 
-    //вторая строка горизонтально
+        //вторая строка горизонтально
     else if (arr[1][0] == '.' && arr[1][1] == 'x' && arr[1][2] == 'x') {
         arr[1][0] = 'o';
         print();
@@ -79,7 +79,7 @@ void PC() {
     }
 
 
-    // третья строка горизонтально
+        // третья строка горизонтально
     else if (arr[2][0] == '.' && arr[2][1] == 'x' && arr[2][2] == 'x') {
         arr[2][0] = 'o';
         print();
@@ -96,7 +96,7 @@ void PC() {
     }
 
 
-    // первая строка вертикально
+        // первая строка вертикально
     else if (arr[0][0] == '.' && arr[1][0] == 'x' && arr[2][0] == 'x') {
         arr[0][0] = 'o';
         print();
@@ -113,7 +113,7 @@ void PC() {
     }
 
 
-    // вторая строка вертикально
+        // вторая строка вертикально
     else if (arr[0][1] == '.' && arr[1][1] == 'x' && arr[2][1] == 'x') {
         arr[0][1] = 'o';
         print();
@@ -130,7 +130,7 @@ void PC() {
     }
 
 
-    //третья строка вертикально
+        //третья строка вертикально
     else if (arr[0][2] == '.' && arr[1][2] == 'x' && arr[2][2] == 'x') {
         arr[0][2] = 'o';
         print();
@@ -146,10 +146,48 @@ void PC() {
         print();
     }
 
-    
 
+        //крест 00 .. 22
     else if (arr[0][0] == '.' && arr[1][1] == 'x' && arr[2][2] == 'x') {
-    arr[0][0] == 'o'
+        arr[0][0] = 'o';
+        print();
+    }
+
+    else if (arr[0][0] == 'x' && arr[1][1] == '.' && arr[2][2] == 'x') {
+        arr[1][1] = 'o';
+        print();
+    }
+
+    else if (arr[0][0] == 'x' && arr[1][1] == 'x' && arr[2][2] == '.') {
+        arr[2][2] = 'o';
+        print();
+    }
+
+        //крест 02 .. 20
+
+    else if (arr[0][2] == '.' && arr[1][1] == 'x' && arr[2][0] == 'x') {
+        arr[0][2] = 'o';
+        print();
+    }
+
+    else if (arr[0][2] == 'x' && arr[1][1] == '.' && arr[2][0] == 'x') {
+        arr[1][1] = 'o';
+        print();
+    }
+
+    else if (arr[0][2] == 'x' && arr[1][1] == 'x' && arr[2][0] == '.') {
+        arr[2][0] = 'o';
+        print();
+    }
+    else {
+        int randX = rand() % 3;
+        int randY = rand() % 3;
+        while (arr[randX][randY] == 'x' || arr[randX][randY] == 'o') {
+            randX = rand() % 3;
+            randY = rand() % 3;
+        }
+        arr[randX][randY] = 'o';
+        print();
     }
 }
 
@@ -170,14 +208,7 @@ int main() {
     int sum = 0;
 
     while (sum != 8) {
-        int randX = rand() % 3;
-        int randY = rand() % 3;
-        while (arr[randX][randY] == 'x' || arr[randX][randY] == 'o') {
-            randX = rand() % 3;
-            randY = rand() % 3;
-        }
-        arr[randX][randY] = 'o';
-        print();
+        PC();
         cout << endl;
         Win();
         sum++;
@@ -194,5 +225,4 @@ int main() {
         cout << endl;
         sum++;
     }
-}
 }
