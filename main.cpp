@@ -1,5 +1,4 @@
 #include "iostream"
-#include "string"
 #include "cstdlib"
 
 using namespace std;
@@ -11,9 +10,9 @@ void table() {
         for (int j = 0; j < 3; j++) {
             arr[i][j] = '.';
         }
-        cout << endl;
     }
 }
+
 void print() {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
@@ -21,23 +20,78 @@ void print() {
         }
         cout << endl;
     }
+    cout << endl;
+}
+
+void player() {
+    int x, y = 0;
+    cout << "enter coordinates: ";
+    cin >> x >> y;
+    while (x > 2 || x < 0 || y > 2 || y < 0) {
+        cout << "wrong coordinates" << endl << "enter norm coordinates: ";
+        cin >> x >> y;
+    }
+
+    arr[x][y] = 'x';
+    cout << endl;
 }
 
 void Win() {
+    //player win
     for (int i = 0; i < 3; i++) {
+        int xSumHorizontal = 0;
+        int xSumVertical = 0;
+
         for (int j = 0; j < 3; j++) {
 
+            if (arr[i][j] == 'x') {
+                xSumHorizontal++;
+            }
+            if (arr[j][i] == 'x') {
+                xSumVertical++;
+            }
         }
 
+        if (xSumVertical == 3) {
+            cout << "PLAYER WIN !" << endl;
+            exit(0);
+        }
+
+        if (xSumHorizontal == 3) {
+            cout << "PLAYER WIN !" << endl;
+            exit(0);
+        }
+    }
+
+    //pc win
+    for (int i = 0; i < 3; i++) {
+        int oSumHorizontal = 0;
+        int oSumVertical = 0;
+
+        for (int j = 0; j < 3; j++) {
+
+            if (arr[i][j] == 'o') {
+                oSumHorizontal++;
+            }
+            if (arr[j][i] == 'o') {
+                oSumVertical++;
+            }
+        }
+
+        if (oSumVertical == 3) {
+            cout << "PC WIN !" << endl;
+            exit(0);
+        }
+
+        if (oSumHorizontal == 3) {
+            cout << "PC WIN !" << endl;
+            exit(0);
+        }
     }
 }
 
-//00 01 02
-//10 11 12
-//20 21 22
-
 void PC() {
-
+    srand(time(NULL));
     //первая строка горизонтально
     if (arr[0][0] == '.' && arr[0][1] == 'x' && arr[0][2] == 'x') {
         arr[0][0] = 'o';
@@ -55,7 +109,7 @@ void PC() {
     }
 
 
-        //вторая строка горизонтально
+    //вторая строка горизонтально
     else if (arr[1][0] == '.' && arr[1][1] == 'x' && arr[1][2] == 'x') {
         arr[1][0] = 'o';
         print();
@@ -72,7 +126,7 @@ void PC() {
     }
 
 
-        // третья строка горизонтально
+    // третья строка горизонтально
     else if (arr[2][0] == '.' && arr[2][1] == 'x' && arr[2][2] == 'x') {
         arr[2][0] = 'o';
         print();
@@ -89,7 +143,7 @@ void PC() {
     }
 
 
-        // первая строка вертикально
+    // первая строка вертикально
     else if (arr[0][0] == '.' && arr[1][0] == 'x' && arr[2][0] == 'x') {
         arr[0][0] = 'o';
         print();
@@ -106,7 +160,7 @@ void PC() {
     }
 
 
-        // вторая строка вертикально
+    // вторая строка вертикально
     else if (arr[0][1] == '.' && arr[1][1] == 'x' && arr[2][1] == 'x') {
         arr[0][1] = 'o';
         print();
@@ -123,7 +177,7 @@ void PC() {
     }
 
 
-        //третья строка вертикально
+    //третья строка вертикально
     else if (arr[0][2] == '.' && arr[1][2] == 'x' && arr[2][2] == 'x') {
         arr[0][2] = 'o';
         print();
@@ -140,7 +194,7 @@ void PC() {
     }
 
 
-        //крест 00 .. 22
+    //крест 00 .. 22
     else if (arr[0][0] == '.' && arr[1][1] == 'x' && arr[2][2] == 'x') {
         arr[0][0] = 'o';
         print();
@@ -156,8 +210,7 @@ void PC() {
         print();
     }
 
-        //крест 02 .. 20
-
+    //крест 02 .. 20
     else if (arr[0][2] == '.' && arr[1][1] == 'x' && arr[2][0] == 'x') {
         arr[0][2] = 'o';
         print();
@@ -172,6 +225,8 @@ void PC() {
         arr[2][0] = 'o';
         print();
     }
+
+
     else {
         int randX = rand() % 3;
         int randY = rand() % 3;
@@ -185,36 +240,21 @@ void PC() {
 }
 
 int main() {
-    srand(time(NULL));
-    int x, y = 0;
-    cout << "enter coordinates: ";
-    cin >> x >> y;
-    while (x > 2 || x < 0 || y > 2 || y < 0) {
-        cout << "wrong coordinates" << endl << "enter norm coordinates: ";
-        cin >> x >> y;
-    }
-
     table();
-    arr[x][y] = 'x';
+    player();
     print();
-    cout << endl;
     int sum = 0;
 
-    while (sum != 8) {
+    while (sum != 4) {
         PC();
-        cout << endl;
         Win();
-        sum++;
-
-        cout << "input coordinates: ";
-        cin >> x >> y;
-        while (arr[x][y] == 'x' || arr[x][y] == 'o' || x > 2 || x < 0 || y > 2 || y < 0) {
-            cout << "wrong coordinates" << endl << "enter norm coordinates: ";
-            cin >> x >> y;
-        }
-        arr[x][y] = 'x';
+        player();
         print();
         Win();
         sum++;
+    }
+
+    if (sum == 4) {
+        cout << "nobody win!";
     }
 }
