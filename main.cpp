@@ -6,6 +6,8 @@ bool game = true;
 char arr[3][3];
 int sum = 0;
 
+
+//dot filling
 void table() {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
@@ -14,6 +16,7 @@ void table() {
     }
 }
 
+//print
 void print() {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
@@ -24,6 +27,7 @@ void print() {
     cout << endl;
 }
 
+//player turn
 void player() {
     int x, y = 0;
     cout << "enter coordinates: ";
@@ -41,6 +45,7 @@ void player() {
     sum++;
 }
 
+//game replay
 void play () {
     sum = 0;
     table();
@@ -72,6 +77,7 @@ void play () {
     }
 }
 
+//wins
 void Win() {
     //player win
     for (int i = 0; i < 3; i++) {
@@ -143,16 +149,17 @@ void Win() {
         play();
     }
 
-    //тobody win
+    //nobody win
     if (sum == 9) {
         cout << "nobody win!" << endl;
         play();
     }
 }
 
+//pc turn
 void PC() {
     srand(time(NULL));
-    //первая строка горизонтально
+    //st horizontal
     if (arr[0][0] == '.' && arr[0][1] == 'x' && arr[0][2] == 'x') {
         arr[0][0] = 'o';
         print();
@@ -169,7 +176,7 @@ void PC() {
     }
 
 
-        //вторая строка горизонтально
+    //second horizontal
     else if (arr[1][0] == '.' && arr[1][1] == 'x' && arr[1][2] == 'x') {
         arr[1][0] = 'o';
         print();
@@ -186,7 +193,7 @@ void PC() {
     }
 
 
-        // третья строка горизонтально
+    //third horizontal
     else if (arr[2][0] == '.' && arr[2][1] == 'x' && arr[2][2] == 'x') {
         arr[2][0] = 'o';
         print();
@@ -203,7 +210,7 @@ void PC() {
     }
 
 
-        // первая строка вертикально
+    //first vertically
     else if (arr[0][0] == '.' && arr[1][0] == 'x' && arr[2][0] == 'x') {
         arr[0][0] = 'o';
         print();
@@ -220,7 +227,7 @@ void PC() {
     }
 
 
-        // вторая строка вертикально
+    //second vertically
     else if (arr[0][1] == '.' && arr[1][1] == 'x' && arr[2][1] == 'x') {
         arr[0][1] = 'o';
         print();
@@ -237,7 +244,7 @@ void PC() {
     }
 
 
-        //третья строка вертикально
+    //third vertically
     else if (arr[0][2] == '.' && arr[1][2] == 'x' && arr[2][2] == 'x') {
         arr[0][2] = 'o';
         print();
@@ -254,7 +261,7 @@ void PC() {
     }
 
 
-        //крест 00 .. 22
+    //diagonal 00 .. 22
     else if (arr[0][0] == '.' && arr[1][1] == 'x' && arr[2][2] == 'x') {
         arr[0][0] = 'o';
         print();
@@ -270,7 +277,7 @@ void PC() {
         print();
     }
 
-        //крест 02 .. 20
+    //diagonal 02..20
     else if (arr[0][2] == '.' && arr[1][1] == 'x' && arr[2][0] == 'x') {
         arr[0][2] = 'o';
         print();
@@ -286,7 +293,7 @@ void PC() {
         print();
     }
 
-
+    //rand turn
     else {
         int randX = rand() % 3;
         int randY = rand() % 3;
