@@ -33,11 +33,8 @@ void player() {
     cout << "enter coordinates: ";
     cin >> x >> y;
     while (x > 2 || x < 0 || y > 2 || y < 0 || arr[x][y] == 'x' || arr[x][y] == 'o' || cin.fail()) {
-        cin.clear();
-        cin.ignore();
         cout << "wrong coordinates" << endl << "enter norm coordinates: ";
         cin >> x >> y;
-        cout << endl;
     }
     arr[x][y] = 'x';
     cout << endl;
@@ -72,9 +69,12 @@ void play () {
             else if (temp == "Y" || temp == "Yes" || temp == "yes" || temp == "y" || temp == "YES") {
                 game = true;
                 break;
+
             }
         }
     }
+
+    cout << endl;
 }
 
 //wins
@@ -159,8 +159,143 @@ void Win() {
 //pc turn
 void PC() {
     srand(time(NULL));
-    //st horizontal
-    if (arr[0][0] == '.' && arr[0][1] == 'x' && arr[0][2] == 'x') {
+
+    //st horizontal win
+    if (arr[0][0] == '.' && arr[0][1] == 'o' && arr[0][2] == 'o') {
+        arr[0][0] = 'o';
+        print();
+    }
+
+    else if (arr[0][0] == 'o' && arr[0][1] == '.' && arr[0][2] == 'o') {
+        arr[0][1] = 'o';
+        print();
+    }
+
+    else if (arr[0][0] == 'o' && arr[0][1] == 'o' && arr[0][2] == '.') {
+        arr[0][2] = 'o';
+        print();
+    }
+
+
+    //second horizontal win
+    else if (arr[1][0] == '.' && arr[1][1] == 'o' && arr[1][2] == 'o') {
+        arr[1][0] = 'o';
+        print();
+    }
+
+    else if (arr[1][0] == 'o' && arr[1][1] == '.' && arr[1][2] == 'o') {
+        arr[1][1] = 'o';
+        print();
+    }
+
+    else if (arr[1][0] == 'o' && arr[1][1] == 'o' && arr[1][2] == '.') {
+        arr[1][2] = 'o';
+        print();
+    }
+
+
+    //third horizontal win
+    else if (arr[2][0] == '.' && arr[2][1] == 'o' && arr[2][2] == 'o') {
+        arr[2][0] = 'o';
+        print();
+    }
+
+    else if (arr[2][0] == 'o' && arr[2][1] == '.' && arr[2][2] == 'o') {
+        arr[2][1] = 'o';
+        print();
+    }
+
+    else if (arr[2][0] == 'o' && arr[2][1] == 'o' && arr[2][2] == '.') {
+        arr[2][2] = 'o';
+        print();
+    }
+
+
+    //first vertically win
+    else if (arr[0][0] == '.' && arr[1][0] == 'o' && arr[2][0] == 'o') {
+        arr[0][0] = 'o';
+        print();
+    }
+
+    else if (arr[0][0] == 'o' && arr[1][0] == '.' && arr[2][0] == 'o') {
+        arr[1][0] = 'o';
+        print();
+    }
+
+    else if (arr[0][0] == 'o' && arr[1][0] == 'o' && arr[2][0] == '.') {
+        arr[2][0] = 'o';
+        print();
+    }
+
+
+    //second vertically win
+    else if (arr[0][1] == '.' && arr[1][1] == 'o' && arr[2][1] == 'o') {
+        arr[0][1] = 'o';
+        print();
+    }
+
+    else if (arr[0][1] == 'o' && arr[1][1] == '.' && arr[2][1] == 'o') {
+        arr[1][1] = 'o';
+        print();
+    }
+
+    else if (arr[0][1] == 'o' && arr[1][1] == 'o' && arr[2][1] == '.') {
+        arr[2][1] = 'o';
+        print();
+    }
+
+
+    //third vertically win
+    else if (arr[0][2] == '.' && arr[1][2] == 'o' && arr[2][2] == 'o') {
+        arr[0][2] = 'o';
+        print();
+    }
+
+    else if (arr[0][2] == 'o' && arr[1][2] == '.' && arr[2][2] == 'o') {
+        arr[1][2] = 'o';
+        print();
+    }
+
+    else if (arr[0][2] == 'o' && arr[1][2] == 'o' && arr[2][2] == '.') {
+        arr[2][2] = 'o';
+        print();
+    }
+
+
+    //diagonal 00 .. 22 win
+    else if (arr[0][0] == '.' && arr[1][1] == 'o' && arr[2][2] == 'o') {
+        arr[0][0] = 'o';
+        print();
+    }
+
+    else if (arr[0][0] == 'o' && arr[1][1] == '.' && arr[2][2] == 'o') {
+        arr[1][1] = 'o';
+        print();
+    }
+
+    else if (arr[0][0] == 'o' && arr[1][1] == 'o' && arr[2][2] == '.') {
+        arr[2][2] = 'o';
+        print();
+    }
+
+    //diagonal 02..20 win
+    else if (arr[0][2] == '.' && arr[1][1] == 'o' && arr[2][0] == 'o') {
+        arr[0][2] = 'o';
+        print();
+    }
+
+    else if (arr[0][2] == 'o' && arr[1][1] == '.' && arr[2][0] == 'o') {
+        arr[1][1] = 'o';
+        print();
+    }
+
+    else if (arr[0][2] == 'o' && arr[1][1] == 'o' && arr[2][0] == '.') {
+        arr[2][0] = 'o';
+        print();
+    }
+
+    //st horizontal block
+    else if (arr[0][0] == '.' && arr[0][1] == 'x' && arr[0][2] == 'x') {
         arr[0][0] = 'o';
         print();
     }
@@ -176,7 +311,7 @@ void PC() {
     }
 
 
-    //second horizontal
+    //second horizontal block
     else if (arr[1][0] == '.' && arr[1][1] == 'x' && arr[1][2] == 'x') {
         arr[1][0] = 'o';
         print();
@@ -193,7 +328,7 @@ void PC() {
     }
 
 
-    //third horizontal
+    //third horizontal block
     else if (arr[2][0] == '.' && arr[2][1] == 'x' && arr[2][2] == 'x') {
         arr[2][0] = 'o';
         print();
@@ -210,7 +345,7 @@ void PC() {
     }
 
 
-    //first vertically
+    //first vertically block
     else if (arr[0][0] == '.' && arr[1][0] == 'x' && arr[2][0] == 'x') {
         arr[0][0] = 'o';
         print();
@@ -227,7 +362,7 @@ void PC() {
     }
 
 
-    //second vertically
+    //second vertically block
     else if (arr[0][1] == '.' && arr[1][1] == 'x' && arr[2][1] == 'x') {
         arr[0][1] = 'o';
         print();
@@ -244,7 +379,7 @@ void PC() {
     }
 
 
-    //third vertically
+    //third vertically block
     else if (arr[0][2] == '.' && arr[1][2] == 'x' && arr[2][2] == 'x') {
         arr[0][2] = 'o';
         print();
@@ -261,7 +396,7 @@ void PC() {
     }
 
 
-    //diagonal 00 .. 22
+    //diagonal 00 .. 22 block
     else if (arr[0][0] == '.' && arr[1][1] == 'x' && arr[2][2] == 'x') {
         arr[0][0] = 'o';
         print();
@@ -277,7 +412,7 @@ void PC() {
         print();
     }
 
-    //diagonal 02..20
+    //diagonal 02..20 block
     else if (arr[0][2] == '.' && arr[1][1] == 'x' && arr[2][0] == 'x') {
         arr[0][2] = 'o';
         print();
