@@ -1,5 +1,6 @@
 #include "iostream"
 #include "cstdlib"
+#include <limits>
 using namespace std;
 
 bool game = true;
@@ -34,6 +35,8 @@ void player() {
     cin >> x >> y;
     while (x > 2 || x < 0 || y > 2 || y < 0 || arr[x][y] == 'x' || arr[x][y] == 'o' || cin.fail()) {
         cout << "wrong coordinates" << endl << "enter norm coordinates: ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin >> x >> y;
     }
     arr[x][y] = 'x';
@@ -60,8 +63,6 @@ void play () {
 
     else {
         while (true) {
-            cout << "error input, pls try again: ";
-            cin >> temp;
             if (temp == "n" || temp == "no" || temp == "No" || temp == "N" || temp == "NO") {
                 exit(0);
             }
@@ -70,6 +71,11 @@ void play () {
                 game = true;
                 break;
 
+            }
+
+            else {
+                cout << "error input, pls try again: ";
+                cin >> temp;
             }
         }
     }
